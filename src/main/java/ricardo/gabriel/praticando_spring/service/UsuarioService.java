@@ -7,6 +7,7 @@ import ricardo.gabriel.praticando_spring.repository.UsuarioRepository;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,9 +17,9 @@ public class UsuarioService {
         private final UsuarioRepository usuarioRepository;
         private final PasswordEncoder passwordEncoder;
         
-        public UsuarioService(UsuarioRepository usuarioRepository) {
+        public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
             this.usuarioRepository = usuarioRepository;
-            this.passwordEncoder = new BCryptPasswordEncoder();
+            this.passwordEncoder = passwordEncoder;
         }
 
         public Usuario registrarUsuario(String username, String password) {
